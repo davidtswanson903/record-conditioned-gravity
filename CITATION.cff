@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite it as below."
+title: "record-conditioned-gravity: a sourcing law, its computational check, and its testability under realistic conditions"
+type: software
+authors:
+  - family-names: Swanson
+    given-names: "David T."
+version: 0.1.0
+date-released: "2026-10-01"
+license: MIT
+repository-code: "https://github.com/davidtswanson903/record-conditioned-gravity"
+keywords:
+  - semiclassical gravity
+  - Schrodinger-Newton
+  - self-gravity
+  - decoherence
+  - optomechanics
+abstract: >
+  A standalone, reproducible package for a record-conditioned sourcing law for semiclassical
+  gravity: the law in closed form, a computational check against the idealized theory it is drawn
+  from, and a realistic-conditions feasibility study for testing it on real optomechanical
+  platforms. Every number, table and figure a paper would use is produced by this repository in a
+  form that can be included directly.

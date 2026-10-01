@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+.coverage
+htmlcov/
+
+# Generated LaTeX feed (regenerate with `make latex`; text results/figures below
+# ARE committed, for browsability without a build step)
+build/latex/numbers.tex
+build/latex/tables/
+build/latex/refs.bib
+build/figures/*.pdf
+
+# The paper integration smoke test's own build products
+paper/test/*.aux
+paper/test/*.log
+paper/test/*.out
+paper/test/*.pdf
+paper/test/build.log
+
+# The draft paper's own LaTeX build products (paper.tex and paper.pdf ARE
+# committed -- same browsability reasoning as above; make paper regenerates
+# these from paper.tex and the generated feed)
+paper/draft/*.aux
+paper/draft/*.bbl
+paper/draft/*.blg
+paper/draft/*.log
+paper/draft/*.out
+paper/draft/*Notes.bib
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp

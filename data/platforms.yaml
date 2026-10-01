@@ -1,0 +1,70 @@
+# Every physical parameter below carries its source. A `citation` key points into
+# references.yaml. A field or platform marked ASSUMED in its `notes` is not in the
+# cited source; experiments/realistic/stage3_map.py sweeps it over orders of
+# magnitude, so no conclusion in this repository depends on its exact value.
+
+materials:
+  # [G16] Table I, at T = 100 mK. sigma = 2 pi sqrt(B) from the Debye-Waller
+  # factor. dwsn_times_w0 is [G16]'s published shift times the trap frequency it
+  # was computed at (a material constant independent of w0, since [G16] eq. 8 has
+  # the shift itself proportional to 1/w0): see rcg.law.omega_sn_sq_from_shift.
+  silicon:
+    atomic_mass_u: 28.086
+    density_kg_m3: 2329.0
+    sigma_m: 6.96e-12
+    dwsn_times_w0: 0.00246
+    citation: G16
+  tungsten:
+    atomic_mass_u: 183.84
+    density_kg_m3: 19300.0
+    sigma_m: 3.48e-12
+    dwsn_times_w0: 0.128
+    citation: G16
+  osmium:
+    atomic_mass_u: 190.23
+    density_kg_m3: 22570.0
+    sigma_m: 2.77e-12
+    dwsn_times_w0: 0.264
+    citation: G16
+  gold:
+    atomic_mass_u: 196.97
+    density_kg_m3: 19320.0
+    sigma_m: 4.66e-12
+    dwsn_times_w0: 0.0574
+    citation: G16
+
+platforms:
+  osmium-paul:
+    label: "osmium microdisc, Paul trap"
+    citation: G16
+    material: osmium
+    mass_u: 1.0e+15                  # [G16] Sec. II A: M = 1e15 u
+    diameter_m: 5.2e-6                # [G16] Sec. II A: diameter 5.2 um
+    w0_rad_s: 62.83185307179586        # 2 pi x 10 s^-1 [G16]
+    temperature_K: 0.100                # [G16]: dilution refrigerator
+    pressure_pa: 1.0e-8                   # [G16]: P <~ 1e-10 mbar, converted to Pa
+    gas_amu: 4.0                            # ASSUMED: helium residual gas species
+    heating_nbar_dot: 1.0                     # [G16] Sec. II B: "sub-Hertz heating rates"
+    notes: "every number [G16] except the residual gas species"
+
+  torsion-mg:
+    label: "milligram torsion balance"
+    citation: W21
+    material: gold
+    mass_kg: 90.0e-6                  # [W21]: 90 mg gold sphere
+    diameter_m: 2.0e-3                  # [W21]: 2 mm diameter
+    w0_rad_s: 0.016336281798666926        # 2 pi x 2.6 mHz [W21]
+    temperature_K: 293.0                    # [W21]: room temperature
+    Q: 5.0                                    # ASSUMED: not quoted in [W21]
+    notes: "Q = 5 is ASSUMED; swept in stage 3"
+
+  levitated-gs:
+    label: "ground-state levitated sphere"
+    citation: D20
+    material: silicon                 # ASSUMED: silica stands in for silicon's sigma
+    density_kg_m3: 2200.0                # amorphous silica
+    diameter_m: 143.0e-9                   # [D20]: 143 nm diameter
+    w0_rad_s: 1916371.5190293095             # 2 pi x 305 kHz [D20]
+    nbar: 0.43                                 # [D20]: nbar = 0.43
+    Q: 1.0e+8                                    # ASSUMED
+    notes: "silica taken as silicon for sigma, which OVERSTATES w_SN; Q = 1e8 ASSUMED"

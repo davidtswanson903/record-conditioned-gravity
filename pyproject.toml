@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "rcg"
+version = "0.1.0"
+description = "Record-conditioned semiclassical gravity: the sourcing law, its computational check, and its testability under realistic conditions"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "David T. Swanson" }]
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "matplotlib>=3.8",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pytest-cov>=5.0"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/rcg"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

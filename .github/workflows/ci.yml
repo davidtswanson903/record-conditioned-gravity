@@ -1,0 +1,79 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        run: uv python install 3.11
+
+      - name: Install the package, pinned
+        run: uv sync --extra dev --frozen
+
+      - name: Unit tests, controls, equivalence regressions
+        run: uv run pytest tests/ -q
+
+      - name: Fast computational check (T1, T4 only -- full suite is make check)
+        run: |
+          uv run python -c "
+          import sys; sys.path.insert(0, 'experiments/check'); sys.path.insert(0, 'src')
+          from importlib.machinery import SourceFileLoader
+          mod = SourceFileLoader('rcg_check_run', 'experiments/check/run.py').load_module()
+          out = mod.main()
+          assert abs(out['T4']['worst_2d']) < 1e-12
+          assert abs(out['T1']['rule_i_1'] - out['T1']['sn']) < 1e-9
+          print('fast check: ok')
+          "
+
+      - name: Upload results as an artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: results
+          path: results/*.json
+
+  full:
+    runs-on: ubuntu-latest
+    # the full `make all` pipeline (under an hour), on a schedule and before a
+    # release rather than on every push.
+    if: github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        run: uv python install 3.11
+
+      - name: Install the package, pinned
+        run: uv sync --extra dev --frozen
+
+      - name: make all
+        run: |
+          source .venv/bin/activate || true
+          uv run make all PYTHON="uv run python"
+
+      - name: Check the docs are not stale
+        run: git diff --exit-code README.md CLAIMS.md LIMITS.md PROVENANCE.md docs/
+
+      - name: Upload the full build
+        uses: actions/upload-artifact@v4
+        with:
+          name: full-build
+          path: |
+            results/*.json
+            build/figures/*.png
+            build/latex/

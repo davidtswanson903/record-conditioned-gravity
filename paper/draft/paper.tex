@@ -1,0 +1,789 @@
+\documentclass[aps,pra,reprint,amsmath,amssymb,superscriptaddress]{revtex4-2}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
+\usepackage{xcolor}
+\usepackage{orcidlink}
+
+% ---------------------------------------------------------------------------
+% Every number in this paper is \input from the repository's build, never typed
+% by hand; see paper/README.md. Inline `% Claim N' comments map each result to
+% its row in the repository's CLAIMS.md.
+\input{../../build/latex/numbers.tex}
+
+\graphicspath{{../../build/figures/}}
+
+\begin{document}
+
+\title{Gravity sourced by records: a non-signalling semiclassical law,\\
+its predictions, and the limit on testing it}
+
+\author{David T. Swanson~\orcidlink{0009-0003-0580-6476}}
+\noaffiliation
+
+\date{\today}
+
+\begin{abstract}
+I propose that gravity couples to a quantum system's state conditioned on the
+physical records of its position that actually exist, whether or not they are
+ever read, rather than to its full wavefunction or to what an observer has
+measured. The law is stated in density-matrix language, provably does not
+signal, and has one closed form selected by requiring that independent records
+compose multiplicatively. It predicts no gravitational entanglement between two
+unrecorded masses, with no noise added to enforce that; and no self-gravity
+frequency shift for any mechanical oscillator above its motional ground state.
+I verify these properties by exact simulation, with controls, and then ask
+what a real experiment could see. On every platform considered, the records
+that suppress the predicted signal also broaden the spectral feature that would
+carry it, independent of the oscillator's mass; this limit is specific to the
+present law, and a measurement-conditioned alternative evades it. A weaker
+bound applies to the whole class: any spectroscopic search for a conditioned
+second resonance needs an observation time of order $\pi Q/\omega_0$, a
+special case of a bound derived for measurement-conditioned
+Schr\"odinger--Newton gravity, and consistent with the run time reported by a
+recent torsion-balance experiment.
+\end{abstract}
+
+\maketitle
+
+% =============================================================================
+\section{Introduction}
+
+Whether gravity couples to quantum matter as a quantized field or through some
+semiclassical channel is open, and if the latter, the open question sharpens:
+semiclassical gravity needs a source, and \emph{which state} of a quantum
+system that source is drawn from is itself a choice with physical
+consequences. Two answers are on the table. Unconditional
+Schr\"odinger--Newton gravity sources the field from a system's full
+wavefunction, whatever branch it occupies and whatever records of it exist;
+the resulting nonlinear, nonlocal theory is not excluded by any experiment
+performed to date, but is argued on general grounds to permit
+superluminal signalling~\cite{EppleyHannah1977} and is in direct tension with
+the one experiment built to distinguish it from the ordinary, linear quantum
+expectation value~\cite{PageGeilker1981}. Measurement-conditioned proposals
+instead source the field from what an experimenter's own readout has
+resolved~\cite{Yang2013,Helou2017,LiuEtAl2023}; this avoids sourcing
+by an unmeasured superposition, but makes the source depend on a choice --- what to measure, and when.
+
+This paper takes a third option: condition the source not on the full
+wavefunction, and not on what has been measured, but on whatever physical
+\emph{records} of a system's position exist, independent of whether anyone
+ever reads them. A record is a copy --- a correlation with the environment, a
+latch in an apparatus, a decohered pointer state --- and its existence is a
+fact about the world, not about an observer's choice. I show that the
+resulting law cannot signal (Sec.~\ref{sec:law}), and derive its
+consequences for two
+canonical scenarios: two masses held in spatial superposition with no record
+of either taken (Sec.~\ref{sec:predictions}), and a single oscillator's
+resonance spectrum, where the \emph{same} source rule makes a sharp,
+nearly parameter-free prediction depending only on whether the oscillator's
+own thermal state has been reduced to its motional ground state.
+
+Section~\ref{sec:checks} verifies the law's properties by exact simulation in
+a small model, with controls showing that the simulation distinguishes the law
+from each alternative. Section~\ref{sec:realistic} extends the law from two
+branches to a continuously decohered mechanical oscillator and evaluates it on
+three published platforms. The result is negative: the mechanism that makes
+the predicted signal small also makes the spectral feature carrying it broad,
+and the two do not separate. Section~\ref{sec:why} shows why this limit is
+specific to the present law, and Sec.~\ref{sec:mintime} identifies the weaker
+limit common to every proposal of this kind. Section~\ref{sec:related}
+compares the law with other proposals, and Sec.~\ref{sec:limits} lists the
+limitations of the analysis.
+
+I present the law as a hypothesis with computable consequences, and identify
+what would test it.
+
+% =============================================================================
+\section{The law}
+\label{sec:law}
+
+\subsection{A record, in density-matrix language}
+
+Let a quantum system occupy two distinguishable branches, labelled $A$ and
+$B$ --- the two arms of an interferometer, the two positions of a levitated
+mass, the two outcomes a decay could leave behind. A \emph{record} of which
+branch is a correlation with some other degree of freedom, a register, whose
+two conditional states $\lvert r_A\rangle$ and $\lvert r_B\rangle$ overlap at
+\begin{equation}
+  \eta \equiv \lvert \langle r_A | r_B \rangle \rvert \in [0,1].
+\end{equation}
+$\eta=1$ is no record at all (the register carries no information about which
+branch occurred); $\eta=0$ is a perfect record. This is not a new
+quantity: $\eta$ is exactly the system's own decoherence factor, the
+off-diagonal element of its reduced density matrix in the branch basis,
+normalized to the branch populations. For an exactly balanced
+two-branch state,
+\begin{equation}
+  \eta = \frac{\lvert \rho_{AB}\rvert}{\sqrt{\rho_{AA}\rho_{BB}}}
+       = \sqrt{2\,\mathrm{Tr}\,\rho^2 - 1},
+  \label{eq:eta-purity}
+\end{equation}
+the second equality following from $\mathrm{Tr}\,\rho^2 = (1+\eta^2)/2$ for a
+two-branch state at equal weight. Equation~\eqref{eq:eta-purity}'s
+right-hand side is defined for \emph{any} state, not only a balanced
+two-branch one, and this is what lets Sec.~\ref{sec:realistic} extend the law
+to a real, continuously decohering oscillator with no branches in it at all.
+
+The quantity $\eta$, and hence everything that follows, is a property of the
+system's own \emph{reduced} state $\rho$, read in whatever basis locality
+fixes. It says nothing about whether the register has been read, by whom, or
+in what basis a distant party chooses to read it; Appendix~\ref{app:nosignal}
+uses this to prove that the law does not signal.
+
+\subsection{The source}
+
+The gravitational source is the record-conditioned density $n_r$, built to
+interpolate between two fixed points: with no record ($\eta=1$), $n_r$ is the
+ordinary quantum-mechanical mean density, $n_r = (n_A+n_B)/2$; with a perfect
+record ($\eta=0$), $n_r$ is the localized branch alone, $n_r = n_A$ (for the
+branch-$A$ description). At intermediate $\eta$, two forms interpolate:
+\begin{align}
+  \text{(i)}\quad   n_r^A &= \eta\,\tfrac{n_A+n_B}{2} + (1-\eta)\,n_A, \\
+  \text{(ii)}\quad  n_r^A &= (1-P)\,n_A + P\,n_B,\qquad
+    P = \tfrac{1-\sqrt{1-\eta^2}}{2}.
+\end{align}
+Writing $f(\eta)$ for the weight the law places on the branch a given
+description does \emph{not} occupy, normalized to its no-record value of
+one half, the two forms are
+\begin{equation}
+  f_{\mathrm{(i)}}(\eta) = \eta,
+  \qquad
+  f_{\mathrm{(ii)}}(\eta) = 1-\sqrt{1-\eta^2}.
+  \label{eq:f-forms}
+\end{equation}
+Both satisfy $f(1)=1$ and $f(0)=0$, are continuous and monotonic on $[0,1]$,
+and contain no free parameters. Figure~\ref{fig:f-eta} plots both, together
+with the drift between two branches they produce in an exact numerical model;
+the drift follows $f(\eta)$ to within $4$--$6\%$, the difference coming from
+each branch's own wavepacket spreading. % Claim 1
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{check-1-f-eta.pdf}
+  \caption{$f(\eta)$ for both closed forms, Eq.~\eqref{eq:f-forms}
+    (left), and an exact numerical model's reading of it (right): the
+    measured drift between two branches, relative to its $\eta=1$ value,
+    tracks $f(\eta)$ to within a few per cent. At $\eta=0.5$, $f_{\mathrm
+    {(i)}}=\fEtaHalfRuleI$ against a measured ratio of
+    \etaDriftRatioHalfRuleI; $f_{\mathrm{(ii)}}=\fEtaHalfRuleII$ against
+    \etaDriftRatioHalfRuleII. The two forms differ by a factor of
+    \fEtaHalfRatio\ at $\eta=0.5$.}
+  \label{fig:f-eta}
+\end{figure}
+
+\subsection{Properties, and the form adopted}
+
+\emph{No signalling.} Both forms are functions of $\eta$ alone, and $\eta$ is
+a function of the system's own reduced state, Eq.~\eqref{eq:eta-purity}.
+No local operation on the register --- reading it, not reading it, applying
+any unitary to it whatsoever --- can change the system's reduced state, so
+neither form of the law can be used to signal
+(Appendix~\ref{app:nosignal}). Numerically, the prediction is unchanged to
+$\noSignallingWorstTwoDim$ under twenty random unitaries on a two-dimensional
+register and to $\noSignallingWorstFourDim$ on a four-dimensional one, for
+both forms. A law sourced instead by the outcome actually read changes by
+$\outcomeSourcedSignal$ of its no-record value under the same test.
+% Claims 5, 6
+
+\emph{Composition.} Two independent records at overlaps $\eta_1,\eta_2$ are
+read by the law as a single record at overlap $\eta_1\eta_2$, exactly, for
+\emph{either} form (to $\compositionWorst$), because the law reads only the
+system's reduced state, on which two independent records act multiplicatively
+in their overlaps. % Claim 3
+
+\emph{Multiplicativity.} A stronger condition is that $f$ itself be
+multiplicative, $f(\eta_1)f(\eta_2)=f(\eta_1\eta_2)$. Form (i), $f(\eta)=\eta$,
+satisfies it exactly (error $\ruleIMultiplicativeError$); form (ii) misses by
+up to $\ruleIIMultiplicativeMiss$ in absolute terms. This is the only
+criterion among these checks that separates the two forms; no signalling holds
+for both. % Claims 4, 6
+I take multiplicativity as the selection principle and adopt form (i),
+$f(\eta)=\eta$, as the law in what follows. The principle is a requirement
+imposed here, not a consequence of the law's construction (Sec.~\ref{sec:limits}).
+Form (ii) is retained in the figures and tables as the alternative.
+
+\emph{No added noise.} Unlike a genuinely classical gravitational channel,
+which must add decoherence to the systems it couples as the price of not
+signalling~\cite{Kafri2014}, this law's mean-field dynamics is a
+\emph{deterministic} function of the state, with no stochastic term. The law
+avoids signalling by conditioning on a basis-independent fact, how much record
+exists, rather than by adding noise to wash out a dependence on what is read.
+% Claim 9
+
+% =============================================================================
+\section{Predictions}
+\label{sec:predictions}
+
+\paragraph{P1: gravity without entanglement, and without added noise.}
+Two masses, each held in a spatial superposition with no record of either
+taken, interact only through their respective mean fields under this law.
+Simulated exactly as two qubits, the state's negativity stays below
+$\negativityMax$, zero to numerical precision, while a quantized two-body
+coupling applied to the same initial state reaches a concurrence of
+$\quantizedConcurrenceMax$ (Fig.~\ref{fig:twomass}). % Claim 8
+The masses still attract: each accumulates a relative phase from the other's
+mean field. What is absent is entanglement and, unlike a classical-channel
+model~\cite{Kafri2014}, which also predicts no entanglement but adds noise,
+any added noise. This is the
+discriminator the gravitationally-induced-entanglement
+proposals~\cite{BoseEtAl2017,MarlettoVedral2017} are built to test: if gravity
+mediates entanglement between two otherwise-unconnected quantum systems, its
+mediator must itself be quantum. Under this law, with no record taken, it
+would not. The simulation is mean-field rather than a full master equation
+(Sec.~\ref{sec:limits}).
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{check-4-two-mass.pdf}
+  \caption{Two unrecorded masses: negativity under this law's mean-field
+    form (flat at $\negativityMax$) against a quantized two-body coupling
+    applied to the same initial state (reaching concurrence
+    $\quantizedConcurrenceMax$), which serves as the control.}
+  \label{fig:twomass}
+\end{figure}
+
+\paragraph{P2: no self-gravity shift above the ground state.}
+For a single mechanical oscillator, the law's weight on the unconditioned
+state, $f(\eta)$, is nonzero only where the oscillator's own thermal
+occupation satisfies $\bar n < 1/2$ --- i.e., only in or near the motional
+ground state --- because $\eta_{\mathrm{eff}} = \sqrt{2\,\mathrm{Tr}\,\rho^2-1}$
+with $\mathrm{Tr}\,\rho^2 = 1/(2\bar n+1)$, and both factors are forced by
+Eq.~\eqref{eq:eta-purity} (Sec.~\ref{sec:realistic}). For any oscillator with
+$\bar n>1/2$, which includes all three platforms considered here, the
+resonance sits exactly at
+the bare mechanical frequency $\omega_0$, with \emph{no} self-gravity shift
+at all. Unconditional Schr\"odinger--Newton, by contrast, shifts the
+resonance to $\omega_q=\sqrt{\omega_0^2+\omega_{\mathrm{SN}}^2}$ regardless
+of the oscillator's thermal state. Unconditional Schr\"odinger--Newton
+gravity is not excluded by any published experiment (Sec.~\ref{sec:related}),
+so this is a live discriminator.
+
+\paragraph{P3: record dependence in the ground state.}
+Only for an oscillator cooled below its motional ground-state occupation
+threshold does the record weight $f(\eta)$ depart from zero, and with it the
+signatures that distinguish an unread record from a read one, and a held
+record from an erased one. Section~\ref{sec:realistic} shows these signatures
+are out of reach on every platform considered: the one platform pure enough to
+have $f\neq0$ is also the one where the predicted signal is smallest relative
+to the noise.
+
+\begin{table*}[t]
+  \centering
+  \caption{Discriminators: this law (both forms) against quantized gravity,
+    standard quantum mechanics, and the unconditional and
+    measurement-conditioned Schr\"odinger--Newton alternatives, across four
+    scenarios. Dashes mark combinations not modelled here; see the
+    footnotes.}
+  \label{tab:discriminators}
+  \footnotesize
+  \input{../../build/latex/tables/discriminators-full.tex}
+  \vspace{2pt}
+  {\footnotesize
+  $^{\dagger}$Exact two-qubit simulation, mean-field form (Fig.~\ref{fig:twomass}).\quad
+  $^{\ddagger}$Zero by construction: no coupling term exists between the masses.\quad
+  $^{a}$Not modelled here: neither unconditional nor measurement-conditioned
+  Schr\"odinger--Newton has a two-mass mechanism implemented here; the
+  classical-channel answer is no entanglement with added
+  noise~\cite{Kafri2014}.\quad
+  $^{b}$No two-body coupling partner exists in a single-oscillator spectrum;
+  trivially identical to standard quantum mechanics in this scenario.\quad
+  $^{c}$No register is implemented for these laws here.\quad
+  $^{d}$Unread means nothing has yet been read, so the measurement-conditioned
+  source has not conditioned on anything --- identical to the no-record case
+  here.
+  }
+\end{table*}
+
+Table~\ref{tab:discriminators} collects the four scenarios across the laws
+compared.
+
+% =============================================================================
+\section{Exact checks}
+\label{sec:checks}
+
+The law and its three comparison laws (unconditional Schr\"odinger--Newton,
+a measurement-conditioned alternative that sources by the outcome actually
+read, and standard quantum mechanics with no self-gravity term) are
+implemented in one shared code path, each differing only in what the
+conditioned density $n_r$ is set to. Two models carry the checks: an exact
+split-step propagation of two branch wavefunctions, each in its own
+record-conditioned potential, on a few hundred grid points; and exact linear
+algebra on a register Hilbert space of at most a few hundred dimensions.
+Nothing is sampled or fitted.
+
+\begin{table}[t]
+  \centering
+  \caption{The nine tests and their results.}
+  \label{tab:tests}
+  \footnotesize
+  \input{../../build/latex/tables/tests-summary.tex}
+\end{table}
+
+Table~\ref{tab:tests} summarizes the nine tests. Three controls show that the
+simulation distinguishes the laws: unconditional Schr\"odinger--Newton is flat
+in $\eta$, as it must be; the quantized two-body coupling generates
+entanglement where the law's mean-field form does not
+(Fig.~\ref{fig:twomass}); and the outcome-sourced alternative differs from
+the law when a record goes unread. % Claims 8, 15, 16
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{check-2-no-signalling.pdf}
+  \caption{A distant party's choice of measurement basis on a perfect record:
+    the law's prediction (both forms) is identical in either basis; an
+    outcome-sourced alternative's differs by $\outcomeSourcedSignal$ of its
+    no-record value between them, and so signals.}
+  \label{fig:nosignal}
+\end{figure}
+
+Figure~\ref{fig:nosignal} shows the no-signalling check directly.
+
+For the conservation test (T9), the conserved quantity is the functional that
+generates the dynamics,
+\begin{equation}
+  E = T_A+T_B+\tfrac{\alpha}{2}\big(\langle n_AKn_A\rangle+\langle
+  n_BKn_B\rangle\big)+\beta\langle n_AKn_B\rangle,
+\end{equation}
+with $\alpha,\beta$ the law's two coefficients. (Summing each branch's
+potential against the other branch's density instead double-counts the
+self-interaction.) The worst drift is $\energyDriftWorst$, and it falls by a
+factor of $\energyDriftQuarterRatio$ when the time step is quartered, as
+expected for first-order integrator error. Across a change of record the
+energy changes by $\energyDriftAcrossErasure$, because changing the record
+changes the Hamiltonian; testing conservation across such a change requires
+the full mass-plus-register system, which this reduced model does not include
+(Sec.~\ref{sec:limits}).
+
+% =============================================================================
+\section{Under realistic conditions}
+\label{sec:realistic}
+
+\subsection{The adapter}
+
+The checks above use idealized two-branch states. A real test uses a massive
+mechanical oscillator, continuously decohered by its thermal environment and
+continuously read out by light. Extending the law to this setting takes three
+steps.
+
+\emph{How much record exists.} Equation~\eqref{eq:eta-purity}'s
+right-hand side, $\eta_{\mathrm{eff}}=\sqrt{2\,\mathrm{Tr}\,\rho^2-1}$, is
+read off the oscillator's \emph{unconditioned} steady-state covariance --- the
+state whose mixedness the environment's records caused.
+
+\emph{What the source is.} The law's own interpolation is applied with the
+unconditioned density playing the no-record role and the state
+\emph{conditioned on every record that exists} (the continuous-measurement
+filtering solution, at unit efficiency on every decoherence channel) playing
+the perfect-record role. This reduces exactly to the two-branch law in the
+two-branch limit. % Claims 11, 12
+
+\emph{What it does.} In the regime where the source's spread is small against
+the material's lattice localization length, the self-gravity term is
+harmonic, and the conditioned source produces \emph{two} resonances: the
+conditional mean oscillates at $\omega_c=\sqrt{\omega_0^2+f\,\omega_{\mathrm
+{SN}}^2}$, and the fluctuation about it, which carries the conditional
+variance of whatever the law conditions on, sits at
+$\omega_q=\sqrt{\omega_0^2+\omega_{\mathrm{SN}}^2}$.
+
+This construction extends the law beyond the two-branch states for which it
+is stated. Appendix~\ref{app:adapter} gives the filtering equations and an
+independent check showing that the conclusions below do not depend on the
+extension. % Claim 20
+
+\subsection{Three platforms}
+
+\begin{table}[t]
+  \centering
+  \caption{The three platforms, drawn from the published literature, with
+    assumed values marked.}
+  \label{tab:platforms}
+  \input{../../build/latex/tables/platforms.tex}
+\end{table}
+
+Table~\ref{tab:platforms} lists the three platforms: a
+superconducting osmium microdisc in a Paul trap~\cite{G16}, the published
+proposal's own choice of material and trap frequency; a milligram torsion
+balance~\cite{W21}, the lowest mechanical frequency measured to date; and a
+ground-state-cooled levitated nanosphere~\cite{D20}, the only platform of the
+three whose thermal occupation is below one half, and so the only one where
+$f(\eta)$ is nonzero at all. This sphere is silica, for which no
+crystal-regime self-gravity constant is published; silicon's is used instead, which
+overstates the effect and is therefore conservative for the negative
+conclusion below (Appendix~\ref{app:platforms}). Parameters not taken from
+their sources are marked as assumed and swept over many orders of magnitude.
+
+\subsection{The result: a shape failure}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{realistic-3-spectra.pdf}
+  \caption{What the detector sees on the osmium platform: this law's
+    prediction, the measurement-conditioned alternative's, and standard
+    quantum mechanics' main resonances coincide; only unconditional
+    Schr\"odinger--Newton's is shifted (left). The excess over standard
+    quantum mechanics at the offset where a resolved second peak would sit,
+    relative to each law's own linewidth there (right): the excess is
+    present but spread far wider than the offset itself.}
+  \label{fig:spectra}
+\end{figure}
+
+On every platform, the law's conditioned second resonance is broader than its
+offset from the main line by four to eight orders of magnitude
+(Table~\ref{tab:platforms}), % Claim 14
+because the environment's own
+records simultaneously suppress the predicted signal's \emph{weight} and set
+the resonance's \emph{width}, through the same localization rate --- visible directly in Fig.~\ref{fig:spectra}. The obstacle is the line shape,
+not sensitivity: no integration time resolves a feature far broader than its
+own offset.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{realistic-5-mass-independence.pdf}
+  \caption{Resolvability as a function of oscillator mass, at fixed
+    $\omega_0$, $Q$ and $T$: flat to $\massIndependenceSpread$ (floating-point
+    noise) over fourteen orders of magnitude in mass. A heavier oscillator
+    does not help.}
+  \label{fig:massindep}
+\end{figure}
+
+The closed form underlying this, valid in the weak-measurement, small-shift
+regime (Appendix~\ref{app:resolvability}),
+\begin{equation}
+  R \equiv \frac{\text{offset}}{\text{width}}
+    = \frac{Q\,\hbar\,\omega_{\mathrm{SN}}^2}{8\,\omega_0\,k_BT},
+  \label{eq:resolvability}
+\end{equation}
+does not depend on the oscillator's mass, which the full filtering model
+confirms to $\massIndependenceSpread$ over fourteen orders of magnitude
+(Fig.~\ref{fig:massindep}). % Claim 17
+A larger mass therefore does not help. $R$ improves
+with $Q/T$: osmium needs $Q/T\sim\qtOsmiumMilliHz\,\mathrm{K^{-1}}$ at a
+millihertz to reach $R=1$, or $\qtOsmiumTenHz\,\mathrm{K^{-1}}$ at ten hertz.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{realistic-6-q-window.pdf}
+  \caption{The feasible region in $Q$ and $\omega_0$, at four temperatures: a
+    \emph{window}, not a threshold. Below the lower curve the second
+    resonance is an unresolved shoulder; above the upper curve, it is
+    resolved but too narrow for a periodogram to gather enough independent
+    samples within a month. The window closes from both sides as $\omega_0$
+    rises.}
+  \label{fig:window}
+\end{figure}
+
+A region meeting all three feasibility conditions (resolvability of one, and
+separation from each alternative within a month) exists: osmium at
+$1\,\mathrm{mHz}$, $Q=10^{12}$ and $1\,\mathrm{mK}$ gives $R=\cornerR$. It
+is a window rather than a threshold (Fig.~\ref{fig:window}): % Claim 18
+far enough above the floor, the resonance becomes too narrow for a
+periodogram to gather enough independent samples in a month, so raising $Q$
+eventually hurts.
+
+\subsection{The observable}
+
+Modulating an ancilla's coupling and watching the raw spectrum does not
+isolate the effect: the power spectral density at the probe frequency moves by
+up to $\qmLockinRaw\times$ its baseline under standard quantum mechanics,
+which has no self-gravity term, because the ancilla's backaction heats the
+oscillator under every law. The second resonance's \emph{weight}, separated
+from this heating, passes every control. A protocol of this kind must use
+that heating-nulled observable. % Claims 15, 16
+
+% =============================================================================
+\section{Why the limit is this law's}
+\label{sec:why}
+
+The measurement-conditioned alternative does not face the same wall. Its
+second resonance's half-width is set by $\eta_{\det}\Lambda_{\mathrm{ro}}$,
+the readout's own monitoring rate, which the experimenter sets and so can
+tune down to the imprecision floor, $\Gamma_2=2\gamma$. This law's resonance
+width is set instead by $\Lambda_{\mathrm{tot}}$, the environment's own total
+record rate, which nobody chooses, giving $\Gamma_2=2\gamma(2\bar n+1)$ --- larger by the thermal occupation factor, $\thermalOccupationFactorOsmium$ on
+the osmium platform and $\thermalOccupationFactorTorsion$ on the torsion
+balance. % Claim 22
+Scanning the readout strength over fifty-six orders of magnitude in the full
+model, the measurement-conditioned law clears the imprecision floor on the
+osmium platform with resolvability up to $4.8\times10^4$; the present law
+clears it on no platform.
+
+The law is hard to test not because its signal is small, but because it is
+sourced by records that no one can choose not to make.
+
+% =============================================================================
+\section{A minimum observation time for the whole programme}
+\label{sec:mintime}
+
+A spectral feature of half-width $\Gamma$ cannot be resolved in less than
+about its own coherence time, $2\pi/\Gamma$. Every law with a conditioned
+second resonance --- this one and the measurement-conditioned alternative
+alike --- has $\Gamma_2\ge2\gamma$, forced by the imprecision floor every
+readout carries (Sec.~\ref{sec:why}). Combining the two gives a bound
+independent of which law, platform, or confidence level is in question:
+\begin{equation}
+  t_{\min} = \frac{\pi\,Q}{\omega_0},
+  \label{eq:tmin}
+\end{equation}
+growing \emph{with} $Q$ --- this is the reason the window in
+Fig.~\ref{fig:window} has a ceiling. For a published torsion-balance
+experiment~\cite{Y25} ($Q\approx5\times10^4$ at $0.6\,\mathrm{mHz}$),
+Eq.~\eqref{eq:tmin} gives $\tMinPublishedTorsionDays$ days from its quality
+factor and resonance frequency alone; the experiment reports needing more than
+$300$ days to reach steady state, in agreement in order of magnitude.
+
+The relation underlying Eq.~\eqref{eq:tmin}, that resolving a spectral feature
+takes a time set by its inverse width, is standard. Helou
+\emph{et al.}~\cite{Helou2017} derive a sharper version for
+measurement-conditioned Schr\"odinger--Newton gravity,
+$\tau_{\min}(h)\approx27\,h^{-0.73}\times2/\gamma$ for a Lorentzian peak of
+normalized height $h$ at ten per cent confidence (their Eq.~120).
+Equation~\eqref{eq:tmin} is the weaker bound obtained by dropping the
+dependence on confidence level and signal strength; in exchange, it applies to
+any law with a conditioned second resonance. I note its generality and its
+agreement with the run time reported in Ref.~\cite{Y25}.
+
+% =============================================================================
+\section{Relation to other proposals}
+\label{sec:related}
+
+\paragraph{Unconditional Schr\"odinger--Newton.} This law reduces to it
+exactly with no record ($f(1)=1$), and departs from it wherever any record
+exists. It remains unexcluded: the most sensitive published
+test~\cite{Y25} reports no evidence for a semiclassical-gravity effect and
+explicitly does not claim to exclude the equation.
+
+\paragraph{Measurement-conditioned Schr\"odinger--Newton.} Sourced by what an
+experimenter's readout has resolved rather than by records that
+exist~\cite{Yang2013,Helou2017,LiuEtAl2023}. It differs from the present law
+for unread records, and it avoids the resolvability limit of
+Sec.~\ref{sec:why}.
+
+\paragraph{Classical-channel and spontaneous-localization models.}
+Kafri, Taylor and Milburn~\cite{Kafri2014} treat gravity between two
+resonators as a genuinely stochastic classical measurement channel: like this
+law, it cannot entangle two masses through gravity alone, but unlike this
+law, it must add decoherence as the price of not signalling, since a
+classical channel cannot transmit quantum correlations noiselessly. Tilloy
+and Di\'osi~\cite{TilloyDiosi2016} instead source gravity from the state a
+spontaneous-localization model has already localized, eliminating the
+single-particle self-interaction and predicting an added decoherence term
+tied to the localization model's own parameters. Both share the present law's premise, that gravity is sourced by what is
+localized rather than by the full superposition, but replace conditioning on
+existing records with an intrinsically stochastic mechanism.
+
+\paragraph{Classical--quantum gravity.} Oppenheim~\cite{Oppenheim2023}
+couples a genuinely classical spacetime to quantum matter through a
+trace-preserving, completely positive master equation, forcing quantum
+mechanics itself to become fundamentally stochastic. This modifies the
+matter dynamics directly, a different scope than the present law, which
+modifies only the source term.
+
+\paragraph{Collapse models.} Continuous spontaneous localization at Adler's
+parameters~\cite{BassiRMP2013} already heats a representative platform's
+oscillator eight to eleven orders of magnitude faster than its own thermal
+diffusion rate, excluding it on thermal grounds alone, before any
+self-gravity question is asked. The Di\'osi--Penrose criterion
+\cite{Diosi1989,Penrose1996} and Ghirardi--Rimini--Weber~\cite{GRW1986} are,
+like continuous spontaneous localization, collapse mechanisms rather than
+sourcing laws: they remove a superposition rather than conditioning a source
+on its records.
+
+\paragraph{Gravitationally-induced entanglement.} Bose \emph{et
+al.}~\cite{BoseEtAl2017} and Marletto and Vedral~\cite{MarlettoVedral2017}
+propose witnessing the gravitational field's quantum nature by whether two
+masses in spatial superposition become entangled through their mutual
+attraction. This is precisely the test P1 (Sec.~\ref{sec:predictions})
+speaks to: under this law, with no record taken, they would not.
+
+\paragraph{The case for quantizing gravity.} Eppley and
+Hannah~\cite{EppleyHannah1977} argue on general grounds that a classical
+field coupled to quantum matter must violate momentum conservation, the
+uncertainty principle, or no-signalling; Page and Geilker~\cite{PageGeilker1981}
+give the experimental half of the case, a Cavendish-type experiment whose
+source mass's position is entangled with a radioactive decay, which always
+deflects toward one branch or the other rather than the expectation value
+unconditional semiclassical gravity predicts. Both bear on sourcing gravity
+from the unconditioned mean, not on conditioning it on records.
+
+% =============================================================================
+\section{Limits}
+\label{sec:limits}
+
+\begin{enumerate}
+  \item The selection between the two closed forms of $f$ rests on one
+    criterion --- multiplicative composition --- not on a deeper principle. No
+    signalling, in particular, does not distinguish them.
+  \item The crystal-regime self-gravity frequency $\omega_{\mathrm{SN}}$, and
+    the assumption that it enters the oscillator's frequency squared linearly
+    in the law's own weight, are imported from the optomechanics literature,
+    not derived from this law.
+  \item The adapter's reduction to a thermal oscillator's state (rank above
+    two) is an extrapolation past where the law is stated for two branches.
+    An independent reading, at the material's lattice scale rather than
+    through the state's purity, gives the same conclusion on both platforms
+    where it matters, but the extension itself is not part of the law.
+  \item The two-body entanglement result (P1) is mean-field, not a full
+    continuous master equation with decoherence and backaction acting
+    throughout.
+  \item Every decoherence channel in the adapter is treated as resolving
+    position exclusively; a bath that instead recorded momentum would need a
+    different adapter, not built here.
+  \item Classical force noise --- Casimir forces, patch potentials --- is
+    not included in the realistic-conditions model. It would add to the
+    total diffusion rate and so strengthen the negative feasibility
+    conclusion, but it has not been shown to be negligible.
+  \item Two of the three platforms (the torsion balance and the levitated
+    sphere) carry an assumed mechanical quality factor, swept broadly in
+    Sec.~\ref{sec:realistic} but quoted as single numbers in
+    Table~\ref{tab:platforms}.
+  \item The minimum-observation-time bound (Sec.~\ref{sec:mintime}) is a
+    special case of a known result~\cite{Helou2017} and is compared with a
+    single experiment.
+\end{enumerate}
+
+% =============================================================================
+\section{Conclusion}
+
+Gravity sourced by the records that physically exist of a quantum system's
+position --- rather than by its full wavefunction or by what an observer has
+measured --- is a law that does not signal, by construction, and that makes
+two sharp predictions: no gravitational entanglement between unrecorded
+masses, with no added noise; and no self-gravity frequency shift for any
+oscillator above its motional ground state. Exact simulation with controls
+confirms both. The signature that distinguishes the law from its
+measurement-conditioned alternative is out of reach on every platform
+considered: the records that suppress the signal also broaden the feature
+that would carry it, independent of the oscillator's mass. Prediction P2 can
+be tested with existing apparatus, since none of the platforms in
+Table~\ref{tab:platforms} is near its motional ground state, and it separates
+the law from unconditional Schr\"odinger--Newton gravity. Finally, the bound of
+Sec.~\ref{sec:mintime} applies to every proposal of this kind: sharpening the
+resonance to see a conditioned self-gravity signal lengthens the required
+observation time in proportion.
+
+\paragraph{Data and code availability.} Every number, table and figure in
+this paper is generated by the \texttt{record-conditioned-gravity}
+repository~\cite{rcgrepo}, where \texttt{make all} reproduces them from a
+clean checkout in under an hour. The repository's \texttt{CLAIMS.md} maps each
+result to the script and output that produce it.
+
+\paragraph{Origin.} The law arose in work on a separate, unpublished theory
+of relational quantum gravity. It is stated here independently, and nothing in
+this paper relies on that theory.
+
+\appendix
+
+% =============================================================================
+\section{The closed forms}
+\label{app:closedforms}
+
+Equation~\eqref{eq:f-forms}'s two forms follow directly from the two
+interpolation rules for $n_r$ given in Sec.~\ref{sec:law}, by evaluating the
+weight each places on the non-occupied branch and normalizing to the
+no-record value; both are closed forms in $\eta$ alone, implemented as
+\texttt{rcg.law.f\_rule\_i} and \texttt{rcg.law.f\_rule\_ii}.
+
+% =============================================================================
+\section{No signalling}
+\label{app:nosignal}
+
+\textbf{Claim.} For any $f$ depending only on the reduced state $\rho$ of the
+system under study, no local operation on a register entangled with that
+system can change the law's prediction.
+
+\textbf{Proof sketch.} The reduced state is $\rho=\mathrm{Tr}_R\,\lvert
+\Psi\rangle\langle\Psi\rvert$, tracing out the register $R$. For any unitary
+$U_R$ acting on $R$ alone, $(\mathbb{1}\otimes U_R)\lvert\Psi\rangle\langle
+\Psi\rvert(\mathbb{1}\otimes U_R)^\dagger$ has the identical reduced state on
+the system, since the partial trace is invariant under a unitary on the
+traced-out factor. Hence $\eta$, built from $\rho$ alone
+(Eq.~\eqref{eq:eta-purity}), and any $f(\eta)$, is unchanged. This includes
+reading the register (a unitary copying its outcome to a classical
+pointer, itself part of $R$) and choosing a measurement basis (a unitary
+rotation of $R$ before projection); both are covered by the argument and
+checked numerically in Sec.~\ref{sec:checks}. Two of the alternatives
+compared are not of this form: sourcing by the measured outcome depends on which
+basis the register is measured in (a non-unitary projection, not covered by
+the argument above), and sourcing by how many independent copies of a record
+exist depends on a count that a unitary redistributing information among
+those copies can change.
+
+% =============================================================================
+\section{The adapter}
+\label{app:adapter}
+
+\subsection{The filtering equations}
+
+For a damped harmonic oscillator under continuous position monitoring at
+rate $\mu$ and total momentum diffusion $D$, the steady-state covariance
+$(V_x,V_{xp},V_p)$ solves
+\begin{align}
+  \dot V_x  &= \tfrac{2}{m}V_{xp} - 8\mu V_x^2, \\
+  \dot V_{xp} &= \tfrac{1}{m}V_p - m\omega_0^2V_x - \gamma V_{xp} - 8\mu
+                 V_xV_{xp}, \\
+  \dot V_p  &= -2m\omega_0^2V_{xp} - 2\gamma V_p + 2D - 8\mu V_{xp}^2.
+\end{align}
+Setting the right-hand sides to zero leaves one quartic in $V_x$ with
+positive coefficients, so the positive root is unique. It is found in
+$\log V_x$, since the root can lie twenty orders of magnitude below its
+$\mu=0$ value. $\mu=D/\hbar^2$ (every channel
+conditioned on, at unit efficiency) gives the fully conditioned covariance;
+$\mu=\eta_{\det}\Lambda_{\mathrm{ro}}$ (the readout alone) gives the
+measurement-conditioned one; $\mu=0$ gives the unconditioned one. The
+unconditioned covariance reproduces equipartition, and the fully conditioned
+one the ground state.
+
+\subsection{The extrapolation, checked a second way}
+\label{app:adapter-check}
+
+The conclusion $f=0$ for a thermal oscillator follows from reading
+$\eta_{\mathrm{eff}}$ off the unconditioned state's purity, an extension of
+Eq.~\eqref{eq:eta-purity} beyond the two-branch states for which it is
+derived.
+An independent reading instead asks for the reduced state's coherence at the
+material's own lattice localization length $\sigma$,
+\begin{equation}
+  \eta_{\mathrm{coh}}(\sigma) = \exp\!\left[-\frac{\big(\Sigma-\hbar^2/4V_x
+  \big)\,\sigma^2}{2\hbar^2}\right],\qquad \Sigma\equiv V_p-\frac{V_{xp}^2}
+  {V_x},
+\end{equation}
+which shares no algebra with the purity-based route. On both hot platforms
+(osmium, torsion balance) the thermal de Broglie length is $10^{-16}\,
+\mathrm{m}$ or smaller against a lattice localization of a few picometres, so
+$\eta_{\mathrm{coh}}(\sigma)\to0$, and the conclusion $f=0$ does not depend
+on which reading is used. % Claim 20
+
+% =============================================================================
+\section{Platform parameters}
+\label{app:platforms}
+
+\begin{table*}[t]
+  \centering
+  \caption{All three platforms' parameters, with sources and assumptions
+    (expanding Table~\ref{tab:platforms}).}
+  \label{tab:platformsfull}
+  \input{../../build/latex/tables/platforms-full.tex}
+\end{table*}
+
+% =============================================================================
+\section{The closed-form resolvability, and its regime of validity}
+\label{app:resolvability}
+
+Equation~\eqref{eq:resolvability} assumes two things: weak measurement
+($4m\Lambda\hbar\ll(m\omega_0)^2$, so the fully conditioned variance is the
+ground state's), and a small shift ($\omega_{\mathrm{SN}}\ll\omega_0$, so the
+offset is $\omega_{\mathrm{SN}}^2/2\omega_0$). Checked against the full
+filtering model, it is accurate to within a few per cent on the osmium
+platform and within tens of per cent on the ground-state-cooled sphere, but
+wrong by six orders of magnitude on the torsion balance, which is deep in
+the strong-measurement regime and has $\omega_{\mathrm{SN}}$ above
+$\omega_0$. All quoted numbers come from the full filtering model;
+Eq.~\eqref{eq:resolvability} is used only for scaling arguments, where it
+holds.
+
+\bibliography{../../build/latex/refs}
+\bibliographystyle{apsrev4-2}
+
+\end{document}

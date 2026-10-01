@@ -1,0 +1,48 @@
+% A minimal document proving build/latex/ compiles -- not a draft of the paper.
+% Build: pdflatex -output-directory=paper/test paper/test/minimal.tex
+%        (run from the repository root, after `make latex figures`)
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\graphicspath{{../../build/figures/}}
+\input{../../build/latex/numbers.tex}
+
+\title{Integration-feed smoke test}
+\author{record-conditioned-gravity}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+This document proves \texttt{build/latex/} compiles; it is not a draft of the paper.
+
+\section{Numbers}
+
+Rule (i) at $\eta=0.5$ gives $f=\fEtaHalfRuleI$, measured as a drift ratio of
+\etaDriftRatioHalfRuleI{} of the no-record value. No signalling holds to
+\noSignallingWorstTwoDim. The osmium platform's resolvability is
+\resolvabilityOsmium, against a feasible corner at \cornerR{} (met: \cornerOk).
+
+\section{A table}
+
+\small
+\input{../../build/latex/tables/discriminators.tex}
+\normalsize
+
+\section{A figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\textwidth]{check-2-no-signalling.pdf}
+\caption{A distant party's choice of measurement basis.}
+\end{figure}
+
+\section{References}
+
+See \texttt{build/latex/refs.bib} (not cited here, to avoid requiring a
+bibliography-processor pass in this smoke test).
+
+\end{document}

@@ -1,0 +1,102 @@
+{
+ "second_reading": {
+  "osmium-paul": {
+   "thermal_length": 6.964821178875782e-17,
+   "coherence_length": 6.753473324575129e-17,
+   "sigma": 2.77e-12,
+   "eta_coh": 0.0,
+   "neg_log_eta": 841153322.8529148,
+   "f_purity": 0.0,
+   "f_coherence": 0.0,
+   "agree": true
+  },
+  "torsion-mg": {
+   "thermal_length": 1.7477505785857365e-22,
+   "coherence_length": 1.7477505785857365e-22,
+   "sigma": 4.66e-12,
+   "eta_coh": 0.0,
+   "neg_log_eta": 3.554536094054412e+20,
+   "f_purity": 0.0,
+   "f_coherence": 0.0,
+   "agree": true
+  },
+  "levitated-gs": {
+   "thermal_length": 4.430691610954799e-12,
+   "coherence_length": 4.97075944669311e-12,
+   "sigma": 6.96e-12,
+   "eta_coh": 0.37521208322204824,
+   "neg_log_eta": 0.9802638576190336,
+   "f_purity": 0.27435163058436707,
+   "f_coherence": 0.37521208322204824,
+   "agree": true
+  }
+ },
+ "walls": {
+  "osmium-paul": {
+   "theory": {
+    "R": 0.00012965333297661481,
+    "closed_cap": 0.00013354808052520626,
+    "visibility": 3.151866628045513e-08,
+    "cleared": false
+   },
+   "mc_sn": {
+    "R": 48281.03907751029,
+    "L_ro_over_Lenv": 6.863429533317443e-18,
+    "closed_cap": 55653.80980520424,
+    "cleared": true,
+    "tau_form": 72201619.39072226
+   }
+  },
+  "torsion-mg": {
+   "theory": {
+    "R": 3.22452363526397e-07,
+    "closed_cap": 1.1449695761237134e-13,
+    "visibility": 2.214236851294388e-28,
+    "cleared": false
+   },
+   "mc_sn": {
+    "R": 47.40738570254944,
+    "L_ro_over_Lenv": 4.8986221597005133e-32,
+    "closed_cap": 537.7067253208386,
+    "cleared": true,
+    "tau_form": 922.5424092791391
+   }
+  },
+  "levitated-gs": {
+   "theory": {
+    "R": 1.3484925536383962e-08,
+    "closed_cap": 1.800664289575231e-08,
+    "visibility": 0.07053608622754266,
+    "cleared": false
+   },
+   "mc_sn": {
+    "R": 3.7010825077671e-08,
+    "closed_cap": 3.34923557860993e-08,
+    "visibility": 0.3508449763580042,
+    "cleared": false
+   }
+  }
+ },
+ "tmin": {
+  "osmium-paul": {
+   "Q": 1664488139.9722235,
+   "f0": 10.0,
+   "t_min_days": 963.2454513728144
+  },
+  "torsion-mg": {
+   "Q": 5.0,
+   "f0": 0.0025999999999999994,
+   "t_min_days": 0.01112891737891738
+  },
+  "levitated-gs": {
+   "Q": 100000000.0,
+   "f0": 305000.0,
+   "t_min_days": 0.0018973891924711594
+  },
+  "Y25 torsion balance": {
+   "Q": 50000.0,
+   "f0": 0.0006,
+   "t_min_days": 482.2530864197531
+  }
+ }
+}

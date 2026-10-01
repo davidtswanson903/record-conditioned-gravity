@@ -1,0 +1,274 @@
+# Every source this repository cites, in one place. emit.py turns this into
+# build/latex/refs.bib and docs/related-work.md's reference list; nothing else in
+# the repository holds a citation string that is not also here.
+G16:
+  type: article
+  authors: ["André Großardt", "James Bateman", "Hendrik Ulbricht", "Angelo Bassi"]
+  title: "Optomechanical test of the Schrödinger–Newton equation"
+  journal: "Physical Review D"
+  volume: "93"
+  pages: "096003"
+  year: 2016
+  eprint: "1510.01696"
+  note: >
+    Table I gives the self-gravity frequency shift for four materials, and section
+    II proposes a superconducting osmium microdisc in a dilution-refrigerator-cooled
+    Paul trap. Used in data/platforms.yaml for both the osmium-paul platform and the
+    material constants, and checked against its own eq. 8 in
+    experiments/realistic/stage1_platforms.py.
+
+W21:
+  type: article
+  authors: ["Tobias Westphal", "Hans Hepach", "Jeremias Pfaff", "Markus Aspelmeyer"]
+  title: "Measurement of gravitational coupling between millimetre-sized masses"
+  journal: "Nature"
+  volume: "591"
+  pages: "225"
+  year: 2021
+  eprint: "2009.09546"
+  note: >
+    A milligram torsion balance: 90 mg gold spheres, 2 mm diameter, resonance
+    2.6 mHz. Used in data/platforms.yaml for the torsion-mg platform.
+
+D20:
+  type: article
+  authors: ["Uroš Delić", "Manuel Reisenbauer", "Kahan Dare", "David Grass",
+            "Vladan Vuletić", "Nikolai Kiesel", "Markus Aspelmeyer"]
+  title: "Cooling of a levitated nanoparticle to the motional quantum ground state"
+  journal: "Science"
+  volume: "367"
+  pages: "892"
+  year: 2020
+  note: >
+    A 143 nm silica sphere at 305 kHz cooled to nbar = 0.43. Used in
+    data/platforms.yaml for the levitated-gs platform, the only one in this
+    repository whose oscillator is pure enough for the record weight f to be
+    nonzero at all.
+
+Y25:
+  type: article
+  authors: ["Tianliang Yan", "Yubao Liu", "Leonid Prokhorov", "Jiri Smetana",
+            "Haixing Miao", "Yiqiu Ma", "Vincent Boyer", "Denis Martynov"]
+  title: "First result for testing semiclassical gravity effect with a torsion balance"
+  journal: "Physical Review D"
+  volume: "111"
+  pages: "082007"
+  year: 2025
+  eprint: "2411.17817"
+  note: >
+    An optical cavity of finesse > 350000 on a 0.6 mHz torsion pendulum, Q > 5e4,
+    three months of data, 0.3 urad/rtHz at 2.5 mHz. Reports no evidence for
+    semiclassical gravity and explicitly does NOT exclude the Schrödinger-Newton
+    equation -- the correction in experiments/realistic/stage4_robust.py and
+    LIMITS.md rests on this. Also reports needing 300+ days to reach steady state,
+    the one external check on this repository's minimum-observation-time result
+    (docs/minimum-time.md).
+
+Yang2013:
+  type: article
+  authors: ["Huan Yang", "Haixing Miao", "Da-Shin Lee", "Bassam Helou", "Yanbei Chen"]
+  title: "Macroscopic Quantum Mechanics in a Classical Spacetime"
+  journal: "Physical Review Letters"
+  volume: "110"
+  pages: "170401"
+  year: 2013
+  eprint: "1210.0457"
+  note: >
+    The measurement-conditioned two-peak result this package's mc_sn law
+    reproduces as a limit.
+
+BassiRMP2013:
+  type: article
+  authors: ["Angelo Bassi", "Kinjalk Lochan", "Seema Satin", "Tejinder P. Singh",
+            "Hendrik Ulbricht"]
+  title: "Models of wave-function collapse, underlying theories, and experimental tests"
+  journal: "Reviews of Modern Physics"
+  volume: "85"
+  pages: "471"
+  year: 2013
+  note: >
+    Eq. 61's point-particle CSL heating rate, used (without the geometric
+    reduction for an extended particle, which overstates it) in rcg.laws.collapse
+    to exclude the collapse rival on thermal grounds alone. Also the standard
+    review of GRW/CSL collapse models generally (docs/related-work.md).
+
+Helou2017:
+  type: article
+  authors: ["Bassam Helou", "Jun Luo", "Hsien-Chi Yeh", "Cheng-gang Shao",
+            "Bram J. J. Slagmolen", "David E. McClelland", "Yanbei Chen"]
+  title: "Measurable signatures of quantum mechanics in a classical spacetime"
+  journal: "Physical Review D"
+  volume: "96"
+  pages: "044008"
+  year: 2017
+  eprint: "1612.06310"
+  note: >
+    THE KEY FINDING for docs/minimum-time.md's novelty question. Eq. 120-121
+    give an explicit, numerically fitted scaling law for the minimum measurement
+    time needed to resolve a Lorentzian spectral signature against a flat
+    background at a fixed confidence level: tau_min(h) ~ 27/h^0.73 x 2/gamma,
+    i.e. proportional to the feature's OWN coherence time 2/gamma, exactly the
+    scaling this repository's t_min = pi Q / omega_0 bound recovers as a special,
+    law-independent case. The basic relation (time to resolve a spectral feature
+    scales as its inverse width) is THEREFORE NOT NOVEL to this repository; see
+    docs/minimum-time.md for how the two relate and what, if anything, is new.
+
+Kafri2014:
+  type: article
+  authors: ["Dvir Kafri", "Jacob M. Taylor", "Gerard J. Milburn"]
+  title: "A classical channel model for gravitational decoherence"
+  journal: "New Journal of Physics"
+  volume: "16"
+  pages: "065020"
+  year: 2014
+  eprint: "1401.0946"
+  note: >
+    Gravity as a classical measurement channel between two mechanical
+    resonators: cannot create entanglement, and the decoherence rate it forces
+    is of order the gravitationally induced normal-mode splitting.
+    docs/related-work.md.
+
+TilloyDiosi2016:
+  type: article
+  authors: ["Antoine Tilloy", "Lajos Diósi"]
+  title: "Sourcing semiclassical gravity from spontaneously localized quantum matter"
+  journal: "Physical Review D"
+  volume: "93"
+  pages: "024026"
+  year: 2016
+  eprint: "1509.08705"
+  note: >
+    Semiclassical gravity sourced by spontaneous-localization (collapse) models
+    instead of by records; recovers the Newtonian potential with a short-distance
+    cutoff and an added gravitational decoherence term. docs/related-work.md.
+
+Oppenheim2023:
+  type: article
+  authors: ["Jonathan Oppenheim"]
+  title: "A Postquantum Theory of Classical Gravity?"
+  journal: "Physical Review X"
+  volume: "13"
+  pages: "041040"
+  year: 2023
+  eprint: "1811.03116"
+  note: >
+    Classical spacetime coupled to quantum matter via a trace-preserving,
+    completely positive master equation; gravity's classicality forces quantum
+    mechanics itself to become fundamentally stochastic. docs/related-work.md.
+
+BoseEtAl2017:
+  type: article
+  authors: ["Sougato Bose", "Anupam Mazumdar", "Gavin W. Morley", "Hendrik Ulbricht",
+            "Marko Toroš", "Mauro Paternostro", "Andrew A. Geraci", "Peter F. Barker",
+            "M. S. Kim", "Gerard Milburn"]
+  title: "Spin Entanglement Witness for Quantum Gravity"
+  journal: "Physical Review Letters"
+  volume: "119"
+  pages: "240401"
+  year: 2017
+  eprint: "1707.06050"
+  note: >
+    The gravitationally-induced-entanglement proposal P1 (gravity without
+    entanglement, Claim 8) speaks to: two masses in superposition, entangled via
+    gravity alone if and only if the mediator is quantum. docs/related-work.md.
+
+MarlettoVedral2017:
+  type: article
+  authors: ["Chiara Marletto", "Vlatko Vedral"]
+  title: >
+    Gravitationally Induced Entanglement between Two Massive Particles is
+    Sufficient Evidence of Quantum Effects in Gravity
+  journal: "Physical Review Letters"
+  volume: "119"
+  pages: "240402"
+  year: 2017
+  eprint: "1707.06036"
+  note: "The companion proposal to BoseEtAl2017, published back to back with it."
+
+PageGeilker1981:
+  type: article
+  authors: ["Don N. Page", "C. D. Geilker"]
+  title: "Indirect Evidence for Quantum Gravity"
+  journal: "Physical Review Letters"
+  volume: "47"
+  pages: "979"
+  year: 1981
+  note: >
+    A Cavendish experiment whose source mass's position is entangled with a
+    radioactive decay: the balance always deflects toward one branch or the
+    other, never toward the expectation value semiclassical gravity predicts.
+    The experimental half of the case against unconditional semiclassical
+    gravity; docs/related-work.md.
+
+EppleyHannah1977:
+  type: article
+  authors: ["Kenneth Eppley", "Eric Hannah"]
+  title: "The necessity of quantizing the gravitational field"
+  journal: "Foundations of Physics"
+  volume: "7"
+  pages: "51"
+  year: 1977
+  note: >
+    The thought-experiment argument that a classical gravitational field
+    interacting with quantum matter violates momentum conservation, the
+    uncertainty principle, or no-signalling -- contested since (Mattingly;
+    Huggett and Callender), but the theoretical half of the case against
+    unconditional semiclassical gravity. docs/related-work.md.
+
+Diosi1989:
+  type: article
+  authors: ["Lajos Diósi"]
+  title: "Models for universal reduction of macroscopic quantum fluctuations"
+  journal: "Physical Review A"
+  volume: "40"
+  pages: "1165"
+  year: 1989
+  note: "One half of the Diósi–Penrose gravitational collapse criterion."
+
+Penrose1996:
+  type: article
+  authors: ["Roger Penrose"]
+  title: "On Gravity's Role in Quantum State Reduction"
+  journal: "General Relativity and Gravitation"
+  volume: "28"
+  pages: "581"
+  year: 1996
+  note: "The other half of the Diósi–Penrose gravitational collapse criterion."
+
+GRW1986:
+  type: article
+  authors: ["GianCarlo Ghirardi", "Alberto Rimini", "Tullio Weber"]
+  title: "Unified dynamics for microscopic and macroscopic systems"
+  journal: "Physical Review D"
+  volume: "34"
+  pages: "470"
+  year: 1986
+  note: >
+    The original spontaneous-localization collapse model; CSL (what
+    rcg.laws.collapse implements, via BassiRMP2013's review) is its continuous
+    generalization.
+
+LiuEtAl2023:
+  type: article
+  authors: ["Yubao Liu", "Haixing Miao", "Yanbei Chen", "Yiqiu Ma"]
+  title: "Semi-classical gravity phenomenology under the causal-conditional quantum measurement prescription"
+  journal: "Physical Review D"
+  volume: "107"
+  pages: "024004"
+  year: 2023
+  eprint: "2207.05966"
+  note: >
+    A third measurement-conditioned prescription -- sourcing gravity from the
+    continuous quantum trajectory itself rather than from a final readout --
+    showing the measurement-conditioned family is not limited to [Yang2013]'s
+    pre/post-selection form. Co-authored by two of [Y25]'s authors.
+    docs/related-work.md.
+
+rcgrepo:
+  type: misc
+  authors: ["David T. Swanson"]
+  title: "record-conditioned-gravity: a sourcing law, its computational check, and its testability under realistic conditions"
+  year: 2026
+  note: >
+    This paper's companion repository (CITATION.cff). Not a published source;
+    cited for data and code availability only.
