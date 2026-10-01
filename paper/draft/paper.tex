@@ -34,15 +34,16 @@ compose multiplicatively. It predicts no gravitational entanglement between two
 unrecorded masses, with no noise added to enforce that; and no self-gravity
 frequency shift for any mechanical oscillator above its motional ground state.
 I verify these properties by exact simulation, with controls, and then ask
-what a real experiment could see. On every platform considered, the records
-that suppress the predicted signal also broaden the spectral feature that would
-carry it, independent of the oscillator's mass; this limit is specific to the
-present law, and a measurement-conditioned alternative evades it. A weaker
-bound applies to the whole class: any spectroscopic search for a conditioned
-second resonance needs an observation time of order $\pi Q/\omega_0$, a
-special case of a bound derived for measurement-conditioned
-Schr\"odinger--Newton gravity, and consistent with the run time reported by a
-recent torsion-balance experiment.
+what a real experiment could see. No platform considered resolves the law's
+conditioned second resonance: the records that suppress the predicted signal
+also broaden the spectral feature that would carry it, independent of the
+oscillator's mass; this limit is specific to the present law, and a
+measurement-conditioned alternative evades it. A weaker bound applies to
+resolved-peak searches generally: any search that aims to resolve a
+conditioned second resonance as a spectral peak needs an observation time of
+order $\pi Q/\omega_0$, a special case of a bound derived for
+measurement-conditioned Schr\"odinger--Newton gravity, and consistent with the
+run time reported by a recent torsion-balance experiment.
 \end{abstract}
 
 \maketitle
@@ -429,7 +430,8 @@ their sources are marked as assumed and swept over many orders of magnitude.
   \label{fig:spectra}
 \end{figure}
 
-On every platform, the law's conditioned second resonance is broader than its
+No platform considered resolves the law's conditioned second resonance: it is
+broader than its
 offset from the main line by four to eight orders of magnitude
 (Table~\ref{tab:platforms}), % Claim 14
 because the environment's own
@@ -541,8 +543,9 @@ $\tau_{\min}(h)\approx27\,h^{-0.73}\times2/\gamma$ for a Lorentzian peak of
 normalized height $h$ at ten per cent confidence (their Eq.~120).
 Equation~\eqref{eq:tmin} is the weaker bound obtained by dropping the
 dependence on confidence level and signal strength; in exchange, it applies to
-any law with a conditioned second resonance. I note its generality and its
-agreement with the run time reported in Ref.~\cite{Y25}.
+any resolved-peak search for a conditioned second resonance, regardless of law
+or platform. I note its generality within that scope, and its agreement with
+the run time reported in Ref.~\cite{Y25}.
 
 % =============================================================================
 \section{Relation to other proposals}
@@ -559,6 +562,17 @@ experimenter's readout has resolved rather than by records that
 exist~\cite{Yang2013,Helou2017,LiuEtAl2023}. It differs from the present law
 for unread records, and it avoids the resolvability limit of
 Sec.~\ref{sec:why}.
+
+\paragraph{Causal, feedback-conditioned Schr\"odinger--Newton.} This law
+conditions the source on whatever physical records of a system's position
+exist, independent of whether, when, or how any of them are read. Miki
+\emph{et al.}~\cite{MikiEtAl2025} develop a causal measurement-conditioned
+formulation of Schr\"odinger--Newton gravity, framed as a quantum
+feedback-control scheme, and identify candidate broadband and
+delayed-measurement experimental signatures beyond the resolved-peak searches
+this paper considers (Sec.~\ref{sec:limits}). This paper does not analyze
+those signatures, and takes no position on whether that framework and the
+present law coincide, overlap, or remain distinct.
 
 \paragraph{Classical-channel and spontaneous-localization models.}
 Kafri, Taylor and Milburn~\cite{Kafri2014} treat gravity between two
@@ -641,6 +655,12 @@ from the unconditioned mean, not on conditioning it on records.
   \item The minimum-observation-time bound (Sec.~\ref{sec:mintime}) is a
     special case of a known result~\cite{Helou2017} and is compared with a
     single experiment.
+  \item The broadband and delayed-measurement signatures identified by Miki
+    \emph{et al.}~\cite{MikiEtAl2025} for causal, feedback-conditioned
+    Schr\"odinger--Newton gravity are not analyzed here; this paper's
+    negative result (Sec.~\ref{sec:realistic}) and the bound of
+    Sec.~\ref{sec:mintime} are both specific to resolved-peak spectroscopic
+    searches.
 \end{enumerate}
 
 % =============================================================================
@@ -652,16 +672,16 @@ measured --- is a law that does not signal, by construction, and that makes
 two sharp predictions: no gravitational entanglement between unrecorded
 masses, with no added noise; and no self-gravity frequency shift for any
 oscillator above its motional ground state. Exact simulation with controls
-confirms both. The signature that distinguishes the law from its
-measurement-conditioned alternative is out of reach on every platform
-considered: the records that suppress the signal also broaden the feature
-that would carry it, independent of the oscillator's mass. Prediction P2 can
+confirms both. No platform considered resolves the signature that
+distinguishes the law from its measurement-conditioned alternative: the
+records that suppress the signal also broaden the feature that would carry
+it, independent of the oscillator's mass. Prediction P2 can
 be tested with existing apparatus, since none of the platforms in
 Table~\ref{tab:platforms} is near its motional ground state, and it separates
 the law from unconditional Schr\"odinger--Newton gravity. Finally, the bound of
-Sec.~\ref{sec:mintime} applies to every proposal of this kind: sharpening the
-resonance to see a conditioned self-gravity signal lengthens the required
-observation time in proportion.
+Sec.~\ref{sec:mintime} applies to every resolved-peak search of this kind:
+sharpening the resonance to see a conditioned self-gravity signal lengthens
+the required observation time in proportion.
 
 \paragraph{Data and code availability.} Every number, table and figure in
 this paper is generated by the \texttt{record-conditioned-gravity}
@@ -783,6 +803,7 @@ $\omega_0$. All quoted numbers come from the full filtering model;
 Eq.~\eqref{eq:resolvability} is used only for scaling arguments, where it
 holds.
 
+\clearpage
 \bibliography{../../build/latex/refs}
 \bibliographystyle{apsrev4-2}
 

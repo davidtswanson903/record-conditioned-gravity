@@ -264,6 +264,20 @@ LiuEtAl2023:
     pre/post-selection form. Co-authored by two of [Y25]'s authors.
     docs/related-work.md.
 
+MikiEtAl2025:
+  type: article
+  authors: ["Daisuke Miki", "Youka Kaku", "Yubao Liu", "Yiqiu Ma", "Yanbei Chen"]
+  title: "The Role of Quantum Measurements when Testing the Quantum Nature of Gravity"
+  journal: "Physical Review D"
+  volume: "111"
+  pages: "104084"
+  year: 2025
+  eprint: "2503.11882"
+  note: >
+    A causal, feedback-conditioned ("CCSN") formulation of measurement-conditioned
+    Schrodinger-Newton gravity, framed as a quantum feedback-control scheme, with
+    candidate broadband and delayed-measurement signatures. docs/related-work.md.
+
 rcgrepo:
   type: misc
   authors: ["David T. Swanson"]
