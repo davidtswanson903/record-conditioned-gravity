@@ -103,7 +103,21 @@ def macros(check, realistic):
     m["noSignallingWorstTwoDim"] = sig(t4["worst_2d"])
     m["noSignallingWorstFourDim"] = sig(t4["worst_4d"])
     m["outcomeSourcedSignal"] = sig(abs(t4["outcome_x"] - t4["outcome_z"]))
-    m["negativityMax"] = sig(max(a["negativity"] for a in t8["theory"]))
+    # The true value is exactly 0 (the "theory" state stays a product state
+    # throughout); what is actually measured is eigvalsh's own roundoff, whose
+    # trailing digits depend on the BLAS/LAPACK backend and so are not
+    # reproducible across platforms. Quote a fixed, generously loose bound
+    # instead of the raw noisy value, with an assertion that catches a real
+    # regression (genuine entanglement leaking in) rather than silently
+    # reporting a wrong "zero" claim.
+    _neg_max = max(a["negativity"] for a in t8["theory"])
+    _neg_bound = 1e-10
+    assert _neg_max < _neg_bound, (
+        f"T8 theory negativity {_neg_max:.3e} exceeds the assumed {_neg_bound:.0e} "
+        "noise-floor bound -- this is no longer roundoff; investigate before "
+        "loosening the bound"
+    )
+    m["negativityMax"] = sig(_neg_bound)
     m["quantizedConcurrenceMax"] = sig(max(b["concurrence"] for b in t8["quantized"]))
     m["energyDriftWorst"] = sig(max(t["rel"] for t in t9))
     m["energyDriftQuarterRatio"] = sig(

@@ -13,7 +13,7 @@ Nine tests, T1–T9, plus the three controls that prove the code can tell the la
 | T5 | an unread record counts the same as a read one | passes |
 | T6 | a coherently erased record restores the unconditioned source | passes |
 | T7 | ordinary decoherence (a generic environment) is indistinguishable from a deliberate register | passes |
-| T8 | two unrecorded masses develop no entanglement under the law | negativity 1.770e-16 (zero to the arithmetic), against a quantized coupling's 0.5274 concurrence in the same code |
+| T8 | two unrecorded masses develop no entanglement under the law | negativity below 1.000e-10 (zero to the arithmetic), against a quantized coupling's 0.5274 concurrence in the same code |
 | T9 | no record configuration creates energy | worst drift 2.980e-4, falling by 4.03x when the time step is quartered (first order, the integrator's own) |
 
 **The controls**, which prove the code can represent a difference when the law predicts there should be one, rather than only ever reporting agreement: unconditional Schrödinger–Newton is flat in `eta` (a required negative control); a quantized two-body coupling generates entanglement where the law's mean-field form does not (T8's own control); and a law sourced by the measured *outcome* rather than by existing records signals by 0.3402 where this law signals by zero (T4's control).
