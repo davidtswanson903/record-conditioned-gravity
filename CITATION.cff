@@ -5,6 +5,7 @@ type: software
 authors:
   - family-names: Swanson
     given-names: "David T."
+    orcid: "https://orcid.org/0009-0003-0580-6476"
 version: 0.1.0
 date-released: "2026-10-01"
 license: MIT
