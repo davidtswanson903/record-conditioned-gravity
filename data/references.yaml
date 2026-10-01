@@ -269,6 +269,11 @@ rcgrepo:
   authors: ["David T. Swanson"]
   title: "record-conditioned-gravity: a sourcing law, its computational check, and its testability under realistic conditions"
   year: 2026
+  publisher: "Zenodo"
+  version: "v0.1.0"
+  doi: "10.5281/zenodo.23089913"
+  url: "https://doi.org/10.5281/zenodo.23089913"
   note: >
-    This paper's companion repository (CITATION.cff). Not a published source;
-    cited for data and code availability only.
+    This paper's companion repository (CITATION.cff), archived at the cited
+    Zenodo DOI. Not a published source; cited for data and code availability
+    only.

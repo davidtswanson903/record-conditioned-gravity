@@ -503,6 +503,14 @@ def write_refs_bib(path=None):
         if r.get("eprint"):
             lines.append(f"  eprint = {{{r['eprint']}}},")
             lines.append("  archivePrefix = {arXiv},")
+        if r.get("publisher"):
+            lines.append(f"  publisher = {{{r['publisher']}}},")
+        if r.get("version"):
+            lines.append(f"  note = {{Version {r['version']}}},")
+        if r.get("doi"):
+            lines.append(f"  doi = {{{r['doi']}}},")
+        if r.get("url"):
+            lines.append(f"  url = {{{r['url']}}},")
         lines.append("}")
         lines.append("")
     path.write_text("\n".join(lines), encoding="utf-8")
